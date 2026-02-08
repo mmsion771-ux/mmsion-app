@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MM Sion</title>
+
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#C61F1F">
+  <link rel="apple-touch-icon" href="/assets/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <style>
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#ffffff;
+
+      /* Fondo */
+      background: #0b0b0b url("/assets/bg.png") center/contain no-repeat fixed;
+
+      /* Oscurecido para lectura */
+      background-color: rgba(0,0,0,0.45);
+      background-blend-mode: multiply;
+    }
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+    }
+    .card {
+      max-width: 420px;
+      width: 100%;
+      background: rgba(20,20,20,0.55);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(6px);
+    }
+    .logo {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:center;
+      margin-bottom:10px;
+      flex-direction:column;
+    }
+    .logo img {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+    p {
+      margin: 10px 0 18px;
+      opacity: 0.9;
+      line-height: 1.4;
+      text-align:center;
+    }
+    .btn {
+      display: block;
+      text-align: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .primary {
+      background: #C61F1F;
+      color: #ffffff;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+    .row a {
+      flex: 1;
+      background: rgba(255,255,255,0.12);
+      color: #ffffff;
+    }
+    a.whatsapp{
+      background:#25D366 !important;
+      color:#ffffff !important;
+    }
+    a.whatsapp:hover{
+      background:#1ebe5d !important;
+    }
+    a.btn, button.btn {
+      transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    a.btn:hover, button.btn:hover { transform: scale(0.98); }
+    a.btn:active, button.btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25) inset;
+    }
+    .foot {
+      margin-top: 14px;
+      font-size: 12px;
+      opacity: 0.75;
+      text-align: center;
+    }
+    .foot a {
+      color: #ffffff;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="logo">
+        <img src="/assets/logo.png" alt="MM Sion">
+        <h1>MM Sion</h1>
+      </div>
+
+      <p>Soluciones profesionales para su hogar o negocio.</p>
+
+      <a class="btn primary" href="/services.html">SOLICITAR SERVICIO</a>
+
+      <div class="row">
+        <a class="btn whatsapp" href="https://wa.me/34642510596?text=Hola%20MM%20Sion,%20quiero%20solicitar%20un%20servicio." target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="tel:+34642510596">Llamar</a>
+      </div>
+
+      <div class="foot">
+        <a href="/privacy.html">Política de privacidad</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js");
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Servicios - MM Sion</title>
+
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#C61F1F">
+  <link rel="apple-touch-icon" href="/assets/icon-192.png">
+
+  <style>
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#ffffff;
+
+      /* Fondo */
+      background: #0b0b0b url("/assets/bg.png") center/contain no-repeat fixed;
+
+      /* Oscurecido para lectura */
+      background-color: rgba(0,0,0,0.45);
+      background-blend-mode: multiply;
+    }
+    .wrap{
+      max-width:380px;
+      margin:0 auto;
+      padding:18px;
+    }
+    .top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:6px 0 10px;
+    }
+    .top img{
+      width:34px;
+      height:34px;
+      border-radius:10px;
+    }
+    h1{
+      margin:0;
+      font-size:18px;
+      opacity:.9;
+      font-weight:800;
+    }
+    h2{
+      margin:8px 0 14px;
+      font-size:22px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    .item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 14px;
+      border-radius:14px;
+      background: rgba(20,20,20,0.60);
+      border:1px solid rgba(255,255,255,0.14);
+      text-decoration:none;
+      color:#fff;
+      font-weight:800;
+    }
+    .item small{
+      font-weight:600;
+      opacity:.8;
+    }
+    .back{
+      display:inline-block;
+      margin-top:14px;
+      color:#fff;
+      opacity:.8;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .help{
+      margin-top:18px;
+      padding:14px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.12);
+    }
+    .help p{
+      margin:0 0 10px;
+      opacity:.9;
+      line-height:1.4;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+    }
+    .row a{
+      flex:1;
+      display:block;
+      text-align:center;
+      padding:12px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:800;
+      background:rgba(255,255,255,0.12);
+      color:#fff;
+    }
+
+    a.whatsapp{
+      background:#25D366 !important;
+      color:#ffffff !important;
+    }
+    a.whatsapp:hover{
+      background:#1ebe5d !important;
+    }
+
+    a.btn, button.btn {
+      transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    a.btn:hover, button.btn:hover { transform: scale(0.98); }
+    a.btn:active, button.btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25) inset;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <img src="/assets/logo.png" alt="MM Sion">
+      <h1>MM Sion</h1>
+    </div>
+
+    <h2>Elija su servicio</h2>
+
+    <div class="grid">
+      <a class="item" href="/form.html?service=Ventanas%20y%20cerramientos">
+        <span>🪟 Ventanas y cerramientos</span><small>→</small>
+      </a>
+
+      <a class="item" href="/form.html?service=Persianas%20y%20cerrajer%C3%ADa">
+        <span>🚪 Persianas y cerrajería</span><small>→</small>
+      </a>
+
+      <a class="item" href="/form.html?service=Pintura">
+        <span>🎨 Pintura</span><small>→</small>
+      </a>
+
+      <a class="item" href="/form.html?service=Reformas">
+        <span>🛁 Reformas</span><small>→</small>
+      </a>
+
+      <a class="item" href="/form.html?service=Energ%C3%ADa%20y%20climatizaci%C3%B3n">
+        <span>🔥 Energía y climatización</span><small>→</small>
+      </a>
+
+      <a class="item" href="/form.html?service=Barandillas%20y%20vidrio">
+        <span>🧱 Barandillas y vidrio</span><small>→</small>
+      </a>
+    </div>
+
+    <a class="back" href="/">← Volver</a>
+
+    <div class="help">
+      <p>Si lo prefiere, puede contactarnos directamente:</p>
+      <div class="row">
+        <a class="whatsapp" href="https://wa.me/34642510596?text=Hola%20MM%20Sion,%20quiero%20solicitar%20un%20servicio." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="tel:+34642510596">Llamar</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js");
+    }
+  </script>
+</body>
+</html>
+

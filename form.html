@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solicitud - MM Sion</title>
+
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#C61F1F">
+  <link rel="apple-touch-icon" href="/assets/icon-192.png">
+
+  <style>
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#ffffff;
+
+      /* Fondo */
+      background: #0b0b0b url("/assets/bg.png") center/contain no-repeat fixed;
+
+      /* Oscurecido para lectura */
+      background-color: rgba(0,0,0,0.45);
+      background-blend-mode: multiply;
+    }
+    .wrap{
+      max-width:380px;
+      margin:0 auto;
+      padding:18px;
+    }
+    .top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:6px 0 10px;
+    }
+    .top img{ width:34px; height:34px; border-radius:10px; }
+    .top .brand{ font-weight:800; opacity:.9; }
+    h2{ margin:8px 0 6px; font-size:22px; }
+    .service{
+      margin:0 0 14px;
+      opacity:.85;
+      background: rgba(20,20,20,0.60);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:12px;
+      padding:10px 12px;
+    }
+    label{ display:block; font-weight:800; margin:12px 0 6px; }
+    input, textarea{
+      width:100%;
+      box-sizing:border-box;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.16);
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      outline:none;
+      font-size:15px;
+    }
+    textarea{ min-height:110px; resize:vertical; }
+    .btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      padding:14px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:900;
+      margin-top:14px;
+      border:0;
+      cursor:pointer;
+    }
+    .primary{ background:#C61F1F; color:#fff; }
+    .row{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+    }
+    .row a{
+      flex:1;
+      display:block;
+      text-align:center;
+      padding:12px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:900;
+      background:rgba(255,255,255,0.12);
+      color:#fff;
+    }
+    .back{
+      display:inline-block;
+      margin-top:14px;
+      color:#fff;
+      opacity:.8;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .note{
+      margin-top:12px;
+      font-size:12px;
+      opacity:.75;
+      line-height:1.4;
+    }
+    a.btn, button.btn {
+      transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    a.btn:hover, button.btn:hover { transform: scale(0.98); }
+    a.btn:active, button.btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25) inset;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="top">
+      <img src="/assets/logo.png" alt="MM Sion">
+      <div class="brand">MM Sion</div>
+    </div>
+
+    <h2>Solicitud de servicio</h2>
+    <div class="service" id="serviceBox">Servicio: —</div>
+
+    <label for="name">Nombre y apellidos</label>
+    <input id="name" type="text" placeholder="Escriba su nombre" required>
+
+    <label for="phone">Teléfono</label>
+    <input id="phone" type="tel" placeholder="Ej. 612345678" required>
+
+    <label for="city">Ciudad / Código postal</label>
+    <input id="city" type="text" placeholder="Ej. Barcelona 08001" required>
+
+    <label for="msg">Mensaje (opcional)</label>
+    <textarea id="msg" placeholder="Cuéntenos brevemente qué necesita..."></textarea>
+
+    <button class="btn primary" id="sendBtn">ENVIAR SOLICITUD (WhatsApp)</button>
+
+    <div class="row">
+      <a id="callBtn" href="tel:+34642510596">Llamar</a>
+      <a href="/services.html">Cambiar servicio</a>
+    </div>
+
+    <a class="back" href="/">← Volver</a>
+
+    <div class="note">
+      Al enviar, se abrirá WhatsApp con su solicitud preparada. El equipo MM Sion le atenderá lo antes posible.
+    </div>
+
+  </div>
+
+  <script>
+    // 1) Servicio desde URL: form.html?service=...
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service") || "Servicio no especificado";
+    document.getElementById("serviceBox").textContent = "Servicio: " + service;
+
+    // 2) Número MM Sion (E.164 sin +)
+    const phoneE164 = "34642510596";
+
+    // 3) Botón llamar
+    document.getElementById("callBtn").href = "tel:+" + phoneE164;
+
+    // 4) Enviar a WhatsApp con mensaje preparado (encode de todo el mensaje)
+    document.getElementById("sendBtn").addEventListener("click", () => {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const msg = document.getElementById("msg").value.trim();
+
+      if (!name || !phone || !city) {
+        alert("Por favor complete Nombre, Teléfono y Ciudad/CP.");
+        return;
+      }
+
+      const message =
+`Hola MM Sion,
+Quiero solicitar un servicio.
+
+Servicio: ${service}
+Nombre: ${name}
+Teléfono: ${phone}
+Ciudad/CP: ${city}${msg ? `\nMensaje: ${msg}` : ""}`;
+
+      const waUrl = "https://wa.me/" + phoneE164 + "?text=" + encodeURIComponent(message);
+      window.open(waUrl, "_blank");
+    });
+
+    // SW
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js");
+    }
+  </script>
+</body>
+</html>
